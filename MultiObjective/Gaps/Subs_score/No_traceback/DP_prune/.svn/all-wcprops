@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/lpsvn/svn/MOSAL/!svn/ver/403/Code/Pedro/MultiObjective/Gaps/Subs_score/No_traceback/DP_prune
+END
+bounds.h
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/lpsvn/svn/MOSAL/!svn/ver/402/Code/Pedro/MultiObjective/Gaps/Subs_score/No_traceback/DP_prune/bounds.h
+END
+main.c
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/lpsvn/svn/MOSAL/!svn/ver/397/Code/Pedro/MultiObjective/Gaps/Subs_score/No_traceback/DP_prune/main.c
+END
+pareto_set.c
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/lpsvn/svn/MOSAL/!svn/ver/397/Code/Pedro/MultiObjective/Gaps/Subs_score/No_traceback/DP_prune/pareto_set.c
+END
+bounds.c
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/lpsvn/svn/MOSAL/!svn/ver/403/Code/Pedro/MultiObjective/Gaps/Subs_score/No_traceback/DP_prune/bounds.c
+END
+pareto_set.h
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/lpsvn/svn/MOSAL/!svn/ver/397/Code/Pedro/MultiObjective/Gaps/Subs_score/No_traceback/DP_prune/pareto_set.h
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/lpsvn/svn/MOSAL/!svn/ver/397/Code/Pedro/MultiObjective/Gaps/Subs_score/No_traceback/DP_prune/Makefile
+END

@@ -1,0 +1,44 @@
+fieldset.step {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+    width: 60%;
+	-moz-border-radius:20px;  
+	border-radius: 20px;
+	-webkit-border-radius: 20px;
+}
+
+legend.step {
+    width:auto;
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+}
+
+input[type=text], input[type=email]{
+	margin-top: 0.5em;
+	margin-left: 1em;
+}
+input[type=checkbox]{
+	margin-right: 1em;
+	margin-bottom: 0.5em;
+}
+textarea{
+	margin-left: 2em;
+	margin-bottom: 2em;
+}
+td{
+	font-size: 14px;
+}
+div.align{
+	width: 60%;
+}
+pre.align{
+	overflow-x:auto;
+	white-space: nowrap;
+}
+td.right_align{
+	text-align: right;
+}
+.alert{
+	width: 90%;
+}

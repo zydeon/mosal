@@ -1,0 +1,64 @@
+<html>
+<head>
+	<title>Plot</title>
+
+	<!-- JQuery
+	==================================================== -->	
+	<script type='text/javascript' src="../../js/jquery.min.js"></script>
+
+	<!-- Bootstrap
+	==================================================== -->
+	<link href="../../css/bootstrap.css" rel="stylesheet" type="text/css">
+	<script type='text/javascript' src="../../js/bootstrap-button.js"></script>
+	<script type='text/javascript' src="../../js/bootstrap.file-input.js"></script>
+
+	<!-- JQPlot
+	==================================================== -->	
+	<link href="../../css/jquery.jqplot.min.css" rel="stylesheet" type="text/css">
+	<script type='text/javascript' src="../../js/jquery.jqplot.min.js"></script>
+	<script type="text/javascript" src="../../plugins/jqplot.highlighter.min.js"></script>
+	<script type="text/javascript" src="../../plugins/jqplot.canvasTextRenderer.min.js"></script>
+	<script type="text/javascript" src="../../plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+	<script type="text/javascript" src="../../plugins/jqplot.cursor.min.js"></script>
+
+	<!-- My includes
+	==================================================== -->	
+	<script type="text/javascript" src="../../js/visualize.js"></script>
+	<script type="text/javascript" src="../../js/upload.js"></script>
+	<script type="text/javascript" src="../../js/bootstrap-alert.js"></script>
+	<link href="../../css/mystyles.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('input[type=file]').bootstrapFileInput();
+		});
+	</script>
+
+</head>
+<body>
+	<center>
+		<h2>Visualize data</h2>
+		<br>
+		<div id="alerts_container"></div>
+		<form action="javascript:executeUpload()">
+			<label for="data_file"><i class="icon-circle-arrow-up"></i><strong> Upload either values or alignments file</strong></label>
+			<input type="file" accept="text/tab-separated-values,text/plain,text/csv,text/html,text/richtext,text/rtf,text/xml" id="data_file" required>
+			<br>
+			<br>
+			<input type="submit" class="btn btn-primary" value="Visualize">
+		</form>
+			<hr>
+			<div id="results"></div>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>			
+	</center>
+</body>
+</html>
