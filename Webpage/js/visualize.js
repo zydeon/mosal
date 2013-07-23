@@ -72,7 +72,7 @@ function Visualizer(data, targetDivID, is_subscore, is_indels){
 		// ---------------
 
 		$.jqplot('chartdiv',  [data], {
-			title:'Non dominated solutions (&#8721='+data.length+')',
+			title:data.length+' non-dominated alignments found',
 			seriesColors:['#006dcc'],
 			axes:{
 				xaxis:{
