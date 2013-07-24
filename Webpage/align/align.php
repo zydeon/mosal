@@ -1,11 +1,13 @@
 <?php
 	ini_set( "display_errors", 0);
 
+	include 'utils.php';
 	require 'PHPMailer-master/class.phpmailer.php';
 
 	$timestamp = $_POST['timestamp'];
-	$input_path = realpath('inputs').'/'.$timestamp;
-	$executable_path = realpath('MOSAL_code');
+	$input_path = 'inputs/'.$timestamp.'-'.$_SERVER['REMOTE_ADDR'].'-'.$_SERVER['REMOTE_PORT'];
+	$executable_path = 'MOSAL_code';
+	$remove_temporary_folder = true;
 
 	$output    = array();
 	$seq1      = $_POST['seq1'];
@@ -19,8 +21,8 @@
 
 
 	// create temporary files
-	if(!file_exists("inputs/".$timestamp))
-		mkdir("inputs/".$timestamp);	
+	if(!file_exists($input_path))
+		mkdir($input_path);	
 	// sequence 1
 	$f = fopen($input_path.'/s1.fasta', 'w');
 	fwrite($f, format_seq($seq1));
@@ -31,7 +33,6 @@
 	fclose($f);		
 
 	$cmd = $executable_path."/mosal ".$input_path."/s1.fasta ".$input_path."/s2.fasta ".$problem." ".$approach." ".$subscore." ".$traceback;
-
 	exec($cmd, $output, $return );
 	if($return == 0){
 		// success
@@ -89,19 +90,24 @@
 
 			if(!$mail->Send()){
 				$response['debug'] = json_encode("Could not send email to $email!");
+				$remove_temporary_folder = false;
+				add_to_logs("Could not send email to $email!", $cmd);
 			}
 		}
 
-		// remove temporary folder
-		exec("rm -r $input_path", $output, $return);
-		if($return != 0)
-			$response['debug'] = json_encode($output);
-
+		if($remove_temporary_folder){
+			// remove temporary folder
+			exec("rm -r $input_path", $output, $return);
+			if($return != 0){
+				$response['debug'] = json_encode($output);
+				add_to_logs("Error on removing inputs temporary folder.", $cmd);
+			}
+		}
 	}
 	else{
 		$response['status'] = 'error';
-		// $response['info'] = 'Error running: "'. $cmd .'"';
-		$response['debug'] = $_POST['bound_number'] == "0";
+		$response['debug'] = "Error on executing the program";
+		add_to_logs("Error on running the executable.", $cmd);
 	}
 	echo json_encode($response);
 
