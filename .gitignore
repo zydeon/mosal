@@ -3,3 +3,5 @@
 *.svn*
 *prog
 *mosal
+*.htpasswd
+*.htaccess
