@@ -5,3 +5,4 @@
 *mosal
 *.htpasswd
 *.htaccess
+*logs.txt
