@@ -1,5 +1,5 @@
 <?php
-	include 'utils.php'
+	include 'utils.php';
 
 	if ($_FILES["subscore_file"]){
 		if ($_FILES["subscore_file"]["error"] > 0){
