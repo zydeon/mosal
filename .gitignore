@@ -6,3 +6,4 @@
 *.htpasswd
 *.htaccess
 *logs.txt
+*get_code.sh
