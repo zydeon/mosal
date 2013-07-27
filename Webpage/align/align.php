@@ -15,10 +15,9 @@
 	$problem   = $_POST['is_indels']	== "true" 	? "indels" : "gaps";
 	$approach  = $_POST['bound_number']	== "0" 		? "dp" 	: "dpp -b=".$_POST['bound_number']; 
 	$traceback = $_POST['is_traceback']	== "true" 	? "" 		: "--no-traceback";
-	$subscore  = $_POST['is_subscore']	== "true" 	? "-ss=".$input_path."/subscore.tbl" : "";
 	$email     = $_POST['email'];
 	$subject   = $_POST['email_subject'];
-
+	$subscore  = setSubscore($_POST['subscore'], $input_path);
 
 	// create temporary files
 	if(!file_exists($input_path))
@@ -69,7 +68,7 @@
 			$mail->AddAttachment($input_path.'/s2.fasta');
 
 			// create output files
-			$s1 = $_POST['is_subscore']	== "true" 	? "subscore" : "matches";
+			$s1 = $_POST['subscore']	== "true" 	? "subscore" : "matches";
 			$s2 = $_POST['is_indels']	== "true" 	? "indels" : "gaps";
 			$header = $s1 . "\t" . $s2;
 
@@ -136,6 +135,13 @@
 						 $alignments[$index][1] . "\n";
 		
 		return $contents;
+	}
+	function setSubscore($formdata, $input_path){
+		switch($formdata){
+			case "false": 	return "";
+			case "upload": 	return "-ss=".$input_path."/subscore.tbl";
+			default: 		return "-ss=subscores/".$formdata.".tbl";
+		}
 	}
 
 ?>

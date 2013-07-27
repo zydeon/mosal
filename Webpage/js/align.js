@@ -2,6 +2,8 @@ var ss_formdata = false;
 var is_indels;
 var is_traceback = false;
 var is_subscore;
+var wants_subscore;
+var subscore_value;
 var is_dp;			// pruning or not
 var data = false;
 var with_email = false;
@@ -18,6 +20,7 @@ $(document).ready(function() {
 	$('input[type=file]').bootstrapFileInput();
 	$('#pruningValue').css('width',40);
 
+	wants_subscore = false;
 	// add events
 	setEvents();
 });
@@ -25,16 +28,16 @@ $(document).ready(function() {
 function setEvents(){
 	$("#mbtn").click( function(){
 		ss_formdata = false;
+		wants_subscore = false;
 		$("#subscore_form").hide();
-		$("#subscore").prop("required", false);
+		resetSubscoreSel($("#subscore_select"));
+		resetSubscoreUpl($("#subscore_upl"));
 	} );
 	$("#sbtn").click( function(){
-		if (window.FormData)
-			ss_formdata = new FormData();
-		else
-			console.log("Erro: browser does not support FormData")
+		if (window.FormData) ss_formdata = new FormData();
+		else console.log("Erro: browser does not support FormData")
+		wants_subscore = true;
 		$("#subscore_form").show();
-		$("#subscore").prop("required", true);
 	} );
 	$("#pruning_chkbox").click( function(){
 		if(this.checked){
@@ -69,6 +72,19 @@ function setEvents(){
 			with_email = false;
 		}
 	});
+	$("#subscore_upl").click(function(){
+		resetSubscoreSel($("#subscore_select"));
+	});
+	$("#subscore_select").change(function(){
+		resetSubscoreUpl($("#subscore_upl"));
+	});	
+}
+function resetSubscoreUpl(element){
+	element.replaceWith( element = element.clone( true ) );
+	$('#subscore_form > span.file-input-name').remove();
+}
+function resetSubscoreSel(element){
+	element.val('-');
 }
 function startAlignment(){
 	var timestamp = getTimestamp();
@@ -86,42 +102,56 @@ function startAlignment(){
 		return;
 	}
 	// upload substitution score file
-	if(ss_formdata){
-		var file = $("#subscore").get(0).files[0];			// field is required (length is always > 0)
-		var reader = new FileReader();
-		reader.readAsText(file, "UTF-8");
-		reader.onload = function(evt){
-			// validate file first
-			if(validSubscoreFile(evt.target.result)){
-				ss_formdata.append("subscore_file", file);
-				ss_formdata.append("timestamp", timestamp);
+	if(wants_subscore){
+		var files = $("#subscore_upl").get(0).files;			// field is required (length is always > 0)
+		if(ss_formdata && files.length > 0 ){
+			var f = files[0];
+			var reader = new FileReader();
+			reader.readAsText(f, "UTF-8");
+			reader.onload = function(evt){
+				// validate file first
+				if(validSubscoreFile(evt.target.result)){
+					ss_formdata.append("subscore_file", f);
+					ss_formdata.append("timestamp", timestamp);
 
-				$.ajax({
-					url: "upload_subscore.php",
-					type: "POST",
-					data: ss_formdata,
-					processData: false,
-					contentType: false,
-					success: function (response) {
-						var response = JSON.parse(response);
-						if(response.status == 'error'){
-							displayError('alerts_container','Substitution score file <i>'+file.name+'</i> upload failed.');
+					$.ajax({
+						url: "upload_subscore.php",
+						type: "POST",
+						data: ss_formdata,
+						processData: false,
+						contentType: false,
+						success: function (response) {
+							var response = JSON.parse(response);
+							if(response.status == 'error'){
+								displayError('alerts_container','Substitution score file <i>'+f.name+'</i> upload failed.');
+							}
+							else if(response.status == 'success') {
+								subscore_value = "upload";
+								executeAlign(timestamp);
+							}
 						}
-						else if(response.status == 'success') {
-							executeAlign(timestamp);
-						}
-					}
-				});
+					});
+				}
+				else{
+					displayError('alerts_subscore','Please verify syntax of the substitution score file <i>'+f.name+'</i>.');
+				}
 			}
-			else{
-				displayError('alerts_subscore','Please verify syntax of the substitution score file <i>'+file.name+'</i>.');
+			reader.onerror = function (evt) {
+				displayError('alerts_subscore','Uploaded substitution score file <i>'+f.name+'</i> could not be read, please try again!');
 			}
 		}
-		reader.onerror = function (evt) {
-			displayError('Uploaded substitution score file <i>'+file.name+'</i> could not be read, please try again!');
-		}		
+		else{
+			var sel_value = $("#subscore_select").val();
+			if(sel_value != "-"){
+				subscore_value = sel_value;
+				executeAlign(timestamp);
+			}
+			else
+				displayError('alerts_subscore','Please make sure the substitution matrix chosen is correct!');
+		}
 	}
 	else{
+		subscore_value = false;
 		executeAlign(timestamp);
 	}
 }
@@ -149,12 +179,13 @@ function executeAlign(timestamp){
 			is_indels 	: is_indels,
 			bound_number: bound_number,
 			is_traceback: is_traceback,
-			is_subscore : is_subscore,
+			subscore    : subscore_value,
 			email 		: email,
 			email_subject 		: email_subject,
 
 		},
 		function(response){
+			console.log(response);
 			var response = JSON.parse(response);
 			$("#load").html("");
 
@@ -214,6 +245,6 @@ function emailForm(){
 			'</table>';
 }
 function validSubscoreFile(raw_data){
-	var regex = /^(#.*\n)*([\t ]*[A-Z\*])+[\t ]*\n([A-Z\*]([\t ]*-?(0|[1-9][0-9]*))+[\t ]*\n)+[\t \n]*$/;
+	var regex = /^(#.*\n)*([\t ]*[A-Z\*])+[\t ]*(\n[A-Z\*]([\t ]*-?(0|[1-9][0-9]*))+[\t ]*)+[\t \n]*$/;
 	return regex.test(raw_data);
 }

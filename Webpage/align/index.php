@@ -1,3 +1,4 @@
+<?php ini_set( "display_errors", 0); ?>
 <html>
 <head>
     <!-- Google Analytics ============================================== -->
@@ -63,7 +64,7 @@
 
 			<fieldset class="step">
 				<legend class="step">Step 2 - Score function</legend>
-				<div class="btn-group" data-toggle="buttons-radio">
+				<div class="btn-group" data-toggle="buttons-radxio">
 					<input type="button" id="ibtn" class="btn" value="Indels">
 					<input type="button" id="gbtn" class="btn" value="Gaps">
 				</div>
@@ -77,8 +78,29 @@
 				<div id="subscore_form">
 					<br>
 					<div id="alerts_subscore"></div>
-					<label for="subscore"><i class="icon-circle-arrow-up"></i><strong> Upload substitution score matrix</strong></label>
-					<input type="file" id="subscore">
+					<strong>Choose a substitution score matrix</strong><br>
+					<!-- fetch substitution score matrixes -->
+					<?php
+						$dir = opendir("subscores");
+						while($entry = readdir($dir))
+							if(preg_match("/^BLOSUM.*\.tbl$/", $entry))
+								$blosums[] = substr($entry, 0, strrpos($entry, '.'));
+							else if(preg_match("/^PAM.*\.tbl$/", $entry))
+								$pams[] = substr($entry, 0, strrpos($entry, '.'));
+						closedir($dir);
+					?>
+					<select id="subscore_select">
+						<option value="-">-</option>
+						<optgroup label="BLOSUM">
+							<?php foreach ($blosums as $b) echo "<option value='$b'>$b</option>"; ?>
+						</optgroup>
+						<optgroup label="PAM">
+							<?php foreach ($pams as $p) echo "<option value='$p'>$p</option>"; ?>
+						</optgroup>
+					</select>
+					<p>or</p>
+					<label for="subscore_upl"><i class="icon-circle-arrow-up"></i><strong> Upload substitution score matrix</strong></label>
+					<input type="file" id="subscore_upl">
 				</div>
 			</fieldset>
 
