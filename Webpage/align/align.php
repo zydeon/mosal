@@ -5,7 +5,7 @@
 	require 'PHPMailer-master/class.phpmailer.php';
 
 	$timestamp = $_POST['timestamp'];
-	$input_path = 'inAAAputs/'.$timestamp.'-'.$_SERVER['REMOTE_ADDR'].'-'.$_SERVER['REMOTE_PORT'];
+	$input_path = 'inputs/'.$timestamp.'-'.$_SERVER['REMOTE_ADDR'].'-'.$_SERVER['REMOTE_PORT'];
 	$executable_path = 'MOSAL_code';
 	$remove_temporary_folder = true;
 
