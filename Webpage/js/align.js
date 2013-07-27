@@ -185,7 +185,6 @@ function executeAlign(timestamp){
 
 		},
 		function(response){
-			console.log(response);
 			var response = JSON.parse(response);
 			$("#load").html("");
 
