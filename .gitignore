@@ -5,5 +5,5 @@
 *mosal
 *.htpasswd
 *.htaccess
-*logs.txt
+*logs.html
 *get_code.sh
