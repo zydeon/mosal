@@ -1,3 +1,4 @@
+<?php ini_set( "display_errors", 0); ?>
 <html>
 <head>
     <title>MOSAL - Multiobjective Sequence Alignment Tools</title>
@@ -23,7 +24,7 @@
 <body>
 
     <div class="hero-unit">
-        <h1>MOSAL Source Code <small>v.1</small> </h1>
+        <h1>MOSAL - Multiobjective Sequence Alignment Tools</h1>
     </div>
 
     <div class="row">
@@ -180,14 +181,7 @@
     </div>
     <!-- End of Contents   ================================================= -->
 
-    <!-- Footer ================================================= -->
-    <footer class="footer">
-        <div class="container">
-            <hr>
-            <p>Last update: 16 July 2013</p>
-        </div>
-    <footer>
-    <!-- End of Footer ================================================= -->
+    <?php include 'includes/footer.html'; ?>
 
 </body>
 </html>
