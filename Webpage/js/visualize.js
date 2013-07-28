@@ -19,6 +19,7 @@ function Visualizer(data, targetDivID, is_subscore, is_indels){
 			$('#chartdiv').bind('jqplotDataClick',
 					function (ev, seriesIndex, pointIndex, data) {                
 						$("#aligndiv").html( createAlignDiv(pointIndex) );
+						scrollTo(targetDivID);
 					}
 				)
 			.bind('jqplotHighlighterHighlight', function () {

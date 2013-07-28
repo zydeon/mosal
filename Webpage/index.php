@@ -1,25 +1,8 @@
 <?php ini_set( "display_errors", 0); ?>
 <html>
 <head>
-    <title>MOSAL - Multiobjective Sequence Alignment Tools</title>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
-    <meta name="description" content="Improvements on bicriteria pairwise sequence alignment: algorithms and applications" />
-    <meta name="robots" content="index" />    
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
-
-    <!-- Google Analytics ============================================== -->
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-37516559-1']);
-        _gaq.push(['_trackPageview']);
-
-        (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>    
-    <!-- End of Google Analytics ============================================== -->    
+    <?php $GLOBALS['path_to_root']=''; ?>
+    <?php include 'includes/header.php'; ?>
 </head>
 <body>
 
@@ -62,7 +45,7 @@
 	   </p>
             <p>MOSAL is a program for computing the Pareto optimal alignments for the bicriteria pairwise sequence alignment. 
 		It allows the use of substitution matrices. <p>
-            <p>Maintainer: <a href="mailto:mosal@dei.uc.pt">Pedro Matias</a></p>
+            <p>Maintainer: <a href="mailto:mosal@dei.uc.pt">Pedro Matias <i class="icon-envelope"></i></a></p>
 
             <br>
         	<h2 id="license">License</h2>
@@ -181,7 +164,7 @@
     </div>
     <!-- End of Contents   ================================================= -->
 
-    <?php include 'includes/footer.html'; ?>
+    <?php include 'includes/footer.php'; ?>
 
 </body>
 </html>
