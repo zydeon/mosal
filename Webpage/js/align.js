@@ -244,6 +244,6 @@ function emailForm(){
 			'</table>';
 }
 function validSubscoreFile(raw_data){
-	var regex = /^(#.*\n)*([\t ]*[A-Z\*])+[\t ]*(\n[A-Z\*]([\t ]*-?(0|[1-9][0-9]*))+[\t ]*)+[\t \n]*$/;
+	var regex = /^(#.*\r?\n)*([\t ]*[A-Z\*])+[\t ]*(\r?\n[A-Z\*]([\t ]*-?(0|[1-9][0-9]*))+[\t ]*)+(\t| |\r?\n)*$/;
 	return regex.test(raw_data);
 }

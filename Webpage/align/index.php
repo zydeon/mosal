@@ -47,19 +47,19 @@
 </head>
 <body>
 	<center>
-		<h2>Sequences alignment</h2>
+		<h2>Multiobjective Sequence Alignment</h2>
 		<br>
 		<div id="alerts_container"></div>
 		<form action="javascript:startAlignment()">
 			<fieldset class="step">
-				<legend class="step">Step 1 - Sequences input</legend>
+				<legend class="step">Step 1 - Sequences input<br><small>(size &lt; 2000)</small></legend>
 				<div id="alerts_seq1"></div>
-				Sequence 1
-				<textarea id="seq1" maxlength="2000" placeholder="ATGAACAATCAAGCATACGGTGTTACACC" style="width:75%;" rows="4" required></textarea><br>
+				<strong>Sequence 1</strong><br>
+				<textarea id="seq1" maxlength="2000" placeholder="ATGAACAATCAAGCATACGGTGTTACACC..." style="width:75%;" rows="4" required></textarea><br>
 				<br>
 				<div id="alerts_seq2"></div>
-				Sequence 2
-				<textarea id="seq2" maxlength="2000" placeholder="CTGACCACGAAGACATACGGAGTAACTGA" style="width:75%;" rows="4" required></textarea><br>
+				<strong>Sequence 2</strong><br>
+				<textarea id="seq2" maxlength="2000" placeholder="CTGACCACGAAGACATACGGAGTAACTGA..." style="width:75%;" rows="4" required></textarea><br>
 			</fieldset>
 
 			<fieldset class="step">

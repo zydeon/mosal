@@ -20,8 +20,8 @@ function executeUpload(){
 }
 function parse_file_contents(raw_data){
 	// returns type of file (either values or alignments)
-	var regexV = /^(matches|subscore)\t(indels|gaps)\n(-?(0|[1-9][0-9]*)\t-?(0|[1-9][0-9]*)\n)+$/,
-		regexA = /^(matches|subscore)\t(indels|gaps)\n(-?(0|[1-9][0-9]*)\t-?(0|[1-9][0-9]*)\n[A-Z\-\*]+\n[A-Z\-\*]+\n)+$/;
+	var regexV = /^(matches|subscore)\t(indels|gaps)[\t ]*(\r?\n-?(0|[1-9][0-9]*)\t-?(0|[1-9][0-9]*)[\t ]*)+(\t| |\r?\n)*$/,
+		regexA = /^(matches|subscore)\t(indels|gaps)[\t ]*(\r?\n-?(0|[1-9][0-9]*)\t-?(0|[1-9][0-9]*)[\t ]*\r?\n[A-Z\-\*]+[\t ]*\r?\n[A-Z\-\*]+[\t ]*)+(\t| |\r?\n)*$/;
 
 	if( regexV.test(raw_data) )
 		return get_values(raw_data);
@@ -50,9 +50,6 @@ function parseInts(str){
 function handleError(error){
 	var msg;
 	switch(error){
-		case "distinct_inputs":
-			msg = "Please verify if the input is the same for both files (values and alignments).";
-			break;
 		default:
 			msg = error;
 			break;
