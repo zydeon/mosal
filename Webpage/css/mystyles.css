@@ -1,17 +1,17 @@
 fieldset.step {
-    border: 1px solid #ddd;
-    padding: 0 1.4em 1.4em 1.4em;
-    margin: 0 0 1.5em 0;
-    width: 60%;
-	-moz-border-radius:20px;  
+	border: 1px solid #ddd;
+	padding: 0 1.4em 1.4em 1.4em;
+	margin: 0 0 1.5em 0;
+	width: 60%;
+	-moz-border-radius:20px;
 	border-radius: 20px;
 	-webkit-border-radius: 20px;
 }
 
 legend.step {
-    width:auto;
-    padding:0px 10px; /* To give a bit of padding on the left and right */
-    border-bottom:none;
+	width:auto;
+	padding:0px 10px; /* To give a bit of padding on the left and right */
+	border-bottom:none;
 }
 
 input[type=text], input[type=email]{
@@ -41,4 +41,7 @@ td.right_align{
 }
 .alert{
 	width: 90%;
+}
+.footer{
+	background-color: white;
 }

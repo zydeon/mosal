@@ -12,7 +12,7 @@
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
-    </script>    
+    </script>
     <!-- End of Google Analytics ============================================== --> 
 
 	
@@ -49,107 +49,122 @@
 	<center>
 		<h2>Multiobjective Sequence Alignment</h2>
 		<br>
-		<div id="alerts_container"></div>
-		<form action="javascript:startAlignment()">
-			<fieldset class="step">
-				<legend class="step">Step 1 - Sequences input<br><small>(size &lt; 2000)</small></legend>
-				<div id="alerts_seq1"></div>
-				<strong>Sequence 1</strong><br>
-				<textarea id="seq1" maxlength="2000" placeholder="ATGAACAATCAAGCATACGGTGTTACACC..." style="width:75%;" rows="4" required></textarea><br>
-				<br>
-				<div id="alerts_seq2"></div>
-				<strong>Sequence 2</strong><br>
-				<textarea id="seq2" maxlength="2000" placeholder="CTGACCACGAAGACATACGGAGTAACTGA..." style="width:75%;" rows="4" required></textarea><br>
-			</fieldset>
 
-			<fieldset class="step">
-				<legend class="step">Step 2 - Score function</legend>
-				<div class="btn-group" data-toggle="buttons-radxio">
-					<input type="button" id="ibtn" class="btn" value="Indels">
-					<input type="button" id="gbtn" class="btn" value="Gaps">
-				</div>
-				<br>
-				<br>
-				<div class="btn-group" data-toggle="buttons-radio">
-					<input type="button" id="mbtn" class="btn" value="Matches">
-					<input type="button" id="sbtn" class="btn" value="Substitution score">
-				</div>
-				<br>
-				<div id="subscore_form">
-					<br>
-					<div id="alerts_subscore"></div>
-					<strong>Choose a substitution score matrix</strong><br>
-					<!-- fetch substitution score matrixes -->
-					<?php
-						$dir = opendir("subscores");
-						while($entry = readdir($dir))
-							if(preg_match("/^BLOSUM.*\.tbl$/", $entry))
-								$blosums[] = substr($entry, 0, strrpos($entry, '.'));
-							else if(preg_match("/^PAM.*\.tbl$/", $entry))
-								$pams[] = substr($entry, 0, strrpos($entry, '.'));
-						closedir($dir);
-					?>
-					<select id="subscore_select">
-						<option value="-">-</option>
-						<optgroup label="BLOSUM">
-							<?php foreach ($blosums as $b) echo "<option value='$b'>$b</option>"; ?>
-						</optgroup>
-						<optgroup label="PAM">
-							<?php foreach ($pams as $p) echo "<option value='$p'>$p</option>"; ?>
-						</optgroup>
-					</select>
-					<p>or</p>
-					<label for="subscore_upl"><i class="icon-circle-arrow-up"></i><strong> Upload substitution score matrix</strong></label>
-					<input type="file" id="subscore_upl">
-				</div>
-			</fieldset>
 
-			<fieldset class="step">
-				<legend class="step">Step 3 - Sequence alignment options</legend>
-				<table>
-					<tr>
-						<td><input type="checkbox" id="tb_chkbox"></td>
-						<td>Traceback (display alignments)</td>
-					</tr>					
-					<tr>
-						<td><input type="checkbox" id="pruning_chkbox"></td>
-						<td>Use pruning</td>
-					</tr>
-				</table>
-				<div id="pruning_form">
-					<br>							
-					<label for="pruning"><strong>Choose number of bounds</strong></label>
-					<input type="range" min="1" max="25" id="pruning">
-					<input type="text" id="pruningValue" maxlength="2">							
-				</div>
+		<div class="row">
 
-			</fieldset>
+			<!--  Table of Contents   ================================================= -->
+			<div class="span3" >
+				<ul class="nav nav-tabs nav-stacked affix" style="left:10%;">
+					<li><a href="#step1">Step 1</a></li>
+					<li><a href="#step2">Step 2</a></li>
+					<li><a href="#step3">Step 3</a></li>
+					<li><a href="#step4">Step 4</a></li>
+				</ul>
+			</div>
+			<!--  End of Table of Contents   ================================================= -->
 
-			<fieldset class="step">
-				<legend class="step">Step 4 - Submit</legend>
-				<input type="checkbox" id="email_chkbox">Send results to e-mail
-				<br>
-				<br>
-				<div id="email_form"></div>
-				<input type="submit" class="btn btn-primary" value="Align">
-			</fieldset>
-		</form>
+			<!--  Contents   ================================================= -->
+			<div class="span9">
+				<div id="alerts_container"></div>
+				<form action="javascript:startAlignment()">
+					<fieldset id="step1" class="step">
+						<legend class="step">Step 1 - Sequences input (size &lt; 2000)</legend>
+						<div id="alerts_seq1"></div>
+						<strong>Sequence 1</strong><br>
+						<textarea id="seq1" maxlength="2000" placeholder="ATGAACAATCAAGCATACGGTGTTACACC..." style="width:75%;" rows="4" required></textarea><br>
+						<br>
+						<div id="alerts_seq2"></div>
+						<strong>Sequence 2</strong><br>
+						<textarea id="seq2" maxlength="2000" placeholder="CTGACCACGAAGACATACGGAGTAACTGA..." style="width:75%;" rows="4" required></textarea><br>
+					</fieldset>
 
-		<hr>
-		<div id="load"></div>
-		<div id="results"></div>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
+					<fieldset id="step2" class="step">
+						<legend class="step">Step 2 - Score function</legend>
+						<div class="btn-group" data-toggle="buttons-radxio">
+							<input type="button" id="ibtn" class="btn" value="Indels">
+							<input type="button" id="gbtn" class="btn" value="Gaps">
+						</div>
+						<br>
+						<br>
+						<div class="btn-group" data-toggle="buttons-radio">
+							<input type="button" id="mbtn" class="btn" value="Matches">
+							<input type="button" id="sbtn" class="btn" value="Substitution score">
+						</div>
+						<br>
+						<div id="subscore_form">
+							<br>
+							<div id="alerts_subscore"></div>
+							<strong>Choose a substitution score matrix</strong><br>
+							<!-- fetch substitution score matrixes -->
+							<?php
+								$dir = opendir("subscores");
+								while($entry = readdir($dir))
+									if(preg_match("/^BLOSUM.*\.tbl$/", $entry))
+										$blosums[] = substr($entry, 0, strrpos($entry, '.'));
+									else if(preg_match("/^PAM.*\.tbl$/", $entry))
+										$pams[] = substr($entry, 0, strrpos($entry, '.'));
+								closedir($dir);
+							?>
+							<select id="subscore_select">
+								<option value="-">-</option>
+								<optgroup label="BLOSUM">
+									<?php foreach ($blosums as $b) echo "<option value='$b'>$b</option>"; ?>
+								</optgroup>
+								<optgroup label="PAM">
+									<?php foreach ($pams as $p) echo "<option value='$p'>$p</option>"; ?>
+								</optgroup>
+							</select>
+							<p>or</p>
+							<label for="subscore_upl"><i class="icon-circle-arrow-up"></i><strong> Upload substitution score matrix</strong></label>
+							<input type="file" id="subscore_upl">
+						</div>
+					</fieldset>
 
+					<fieldset id="step3" class="step">
+						<legend class="step">Step 3 - Sequence alignment options</legend>
+						<table>
+							<tr>
+								<td><input type="checkbox" id="tb_chkbox"></td>
+								<td>Traceback (display alignments)</td>
+							</tr>					
+							<tr>
+								<td><input type="checkbox" id="pruning_chkbox"></td>
+								<td>Use pruning</td>
+							</tr>
+						</table>
+						<div id="pruning_form">
+							<br>							
+							<label for="pruning"><strong>Choose number of bounds</strong></label>
+							<input type="range" min="1" max="25" id="pruning">
+							<input type="text" id="pruningValue" maxlength="2">							
+						</div>
+
+					</fieldset>
+
+					<fieldset id="step4" class="step">
+						<legend class="step">Step 4 - Submit</legend>
+						<input type="checkbox" id="email_chkbox">Send results to e-mail
+						<br>
+						<br>
+						<div id="email_form"></div>
+						<input type="submit" class="btn btn-primary" value="Align">
+					</fieldset>
+				</form>
+
+				<hr>
+				<div id="load"></div>
+				<div id="results"></div>
+			</div>
+			<!-- End of Contents   ================================================= -->
+
+		</div> <!-- End of div class="row" -->
+
+
+		<br>
+		<div class="navbar">
+			<?php include '../includes/footer.php'; ?>
+		</div>
 	</center>
 </body>
 </html>

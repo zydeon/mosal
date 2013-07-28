@@ -7,6 +7,7 @@
 <!-- Bootstrap
 ==================================================== -->
 <link href="<?php echo $GLOBALS['path_to_root']?>css/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="<?php echo $GLOBALS['path_to_root']?>css/mystyles.css" rel="stylesheet" type="text/css">
 <script type='text/javascript' src="<?php echo $GLOBALS['path_to_root']?>js/bootstrap-button.js"></script>
 <script type='text/javascript' src="<?php echo $GLOBALS['path_to_root']?>js/bootstrap.file-input.js"></script>
 <script type="text/javascript" src="<?php echo $GLOBALS['path_to_root']?>js/bootstrap-alert.js"></script>

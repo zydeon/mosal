@@ -1,3 +1,4 @@
+<?php ini_set( "display_errors", 0); ?>
 <html>
 <head>
     <!-- Google Analytics ============================================== -->
@@ -61,6 +62,8 @@
 		</form>
 			<hr>
 			<div id="results"></div>
+
+			<!-- Leave space to footer -->
 			<br>
 			<br>
 			<br>
@@ -71,7 +74,12 @@
 			<br>
 			<br>
 			<br>
-			<br>			
+			<br>
+			<!-- End of Leave space to footer -->
+	
+			<div class="navbar navbar-fixed-bottom">
+				<?php include '../includes/footer.php'; ?>
+			</div>
 	</center>
 </body>
 </html>
