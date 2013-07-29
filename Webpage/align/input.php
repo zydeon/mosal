@@ -74,11 +74,11 @@
 				<legend class="step">Step 1 - Sequences input (size &lt; 2000)</legend>
 				<div id="alerts_seq1"></div>
 				<strong>Sequence 1</strong><br>
-				<textarea id="seq1" maxlength="2000" placeholder="ATGAACAATCAAGCATACGGTGTTACACC..." style="width:75%;" rows="4" required></textarea><br>
+				<textarea id="seq1" maxlength="2000" style="width:75%;" rows="4" required></textarea><br>
 				<br>
 				<div id="alerts_seq2"></div>
 				<strong>Sequence 2</strong><br>
-				<textarea id="seq2" maxlength="2000" placeholder="CTGACCACGAAGACATACGGAGTAACTGA..." style="width:75%;" rows="4" required></textarea><br>
+				<textarea id="seq2" maxlength="2000" style="width:75%;" rows="4" required></textarea><br>
 			</fieldset>
 
 			<fieldset id="step2" class="step">
