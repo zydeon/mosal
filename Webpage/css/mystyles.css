@@ -1,6 +1,6 @@
 fieldset.step {
 	border: 1px solid #ddd;
-	padding: 0 1.4em 1.4em 1.4em;
+	padding: 0 1.4em 1.4em 0em;
 	margin: 0 0 1.5em 0;
 	width: 60%;
 	-moz-border-radius:20px;
@@ -44,4 +44,10 @@ td.right_align{
 }
 .footer{
 	background-color: white;
+}
+.container:before{
+	display:none;
+}
+.hero-unit {
+	padding: 40px;
 }

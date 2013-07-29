@@ -1,5 +1,6 @@
 <?php ini_set( "display_errors", 0); ?>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 	<?php $GLOBALS['path_to_root']=''; ?>
 	<?php include 'includes/header.php'; ?>
