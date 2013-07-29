@@ -45,7 +45,7 @@
 	<link href="../css/mystyles.css" rel="stylesheet" type="text/css">
 	<style type="text/css">
 		.nav{
-			width:200px;
+			/*width:200px;*/
 			background-color:white;
 			left:20px;
 			top:100px;
@@ -62,7 +62,7 @@
 			<ul class="nav nav-tabs nav-stacked affix">
 				<li><a href="#step1">Step 1 - Sequences input</a></li>
 				<li><a href="#step2">Step 2 - Score function</a></li>
-				<li><a href="#step3">Step 3 - Sequence alignment options</a></li>
+				<li><a href="#step3">Step 3 - Alignment options</a></li>
 				<li><a href="#step4">Step 4 - Submit</a></li>
 			</ul>
 
