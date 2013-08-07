@@ -56,7 +56,7 @@
 				$response['data']['values'][] = array($a, $b);
 			}			
 		}
-		$response['debug'] = json_encode($cmd);
+		// $response['debug'] = json_encode($cmd);
 
 		// send email
 		if($email != ""){

@@ -224,6 +224,7 @@ void init_subs_table( char * filename ){
 		exit(-1);		
 	}
 }
+
 void align(  ){
 	/**
 	 * Filling of the DP table.

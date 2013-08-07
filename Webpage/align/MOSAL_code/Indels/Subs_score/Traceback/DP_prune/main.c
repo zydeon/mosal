@@ -170,32 +170,43 @@ void init_subs_table( char * filename ){
 	 */
 
 	FILE *f;
-	char line[200];
-	char c;
-	int i, j, val;
-	int len_alphabet = 0;
-	char alphabet[LEN_ALPHABET];
+	char *f_contents, *it, *A, c, *sep = " \r\n\t", alphabet[LEN_ALPHABET];
+	int i, j, f_size, len_alphabet = 0, result;
 
 	f = fopen(filename, "r");
-
 	if(f){
-		while( fscanf(f,"#%[^\n]\n", line) ); 	/* read comments */
+		/* obtain file size */
+		fseek(f, 0 , SEEK_END);
+		f_size = ftell(f);
+		rewind(f);
 
-		while( fscanf(f, "%c", &c) && c !='\n' ){
-			if( c >= '*' && c <= 'Z' ){
+		/* obtain memory */
+		f_contents = (char *)malloc(f_size * sizeof(char));
+		if(!f_contents){ fprintf(stderr, "Failed to allocate memory: %s\n", strerror(errno)); exit(-1);}
+
+		result = fread(f_contents, sizeof(char), f_size, f);
+		if(result != f_size){fprintf(stderr, "Failed to load file: %s\n", strerror(errno)); exit(-1);}
+
+		/* skip comments */
+		it = f_contents;
+		while(*it=='#')	it = strchr(it, '\n')+1;
+
+		/* read alphabet */
+		while(*it != '\n'){
+			c = *it++;
+			if((c>='A' && c<='Z') || (c=='*')){
 				alphabet[ len_alphabet++ ] = c;
 			}
 		}
-		
+		it++;
+
+		/* read scores */
 		for (i = 0; i < len_alphabet; ++i){
-			fscanf(f,"\n%c", &c);	
-
-			for (j = 0; j < len_alphabet; ++j){
-				fscanf(f,"%d", &val);
-				S[ alphabet[i]-'*' ][ alphabet[j]-'*' ] = val;			/* subs table */
-			}
+			A = strtok(i==0 ? it:NULL, sep);
+			for (j = 0; j < len_alphabet; ++j)
+				S[ alphabet[i]-'*' ][ alphabet[j]-'*' ] = atoi(strtok(NULL , sep));
 		}
-
+		free(f_contents);
 		fclose(f);
 	}
 	else{
