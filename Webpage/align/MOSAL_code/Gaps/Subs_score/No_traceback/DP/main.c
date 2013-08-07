@@ -238,7 +238,7 @@ void init_subs_table( char * filename ){
 		for (i = 0; i < len_alphabet; ++i){
 			A = strtok(i==0 ? it:NULL, sep);
 			for (j = 0; j < len_alphabet; ++j)
-				S[ alphabet[i]-'*' ][ alphabet[j]-'*' ] = atoi(strtok(NULL , sep));
+				SS[ alphabet[i]-'*' ][ alphabet[j]-'*' ] = atoi(strtok(NULL , sep));
 		}
 		free(f_contents);
 		fclose(f);
