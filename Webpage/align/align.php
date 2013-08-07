@@ -107,6 +107,7 @@
 	else{
 		$response['status'] = 'error';
 		$response['debug'] = "Error on executing the program";
+		$response['debug'] = json_encode($cmd);
 		add_to_logs("Error on running the executable.", $cmd);
 	}
 	echo json_encode($response);
@@ -140,8 +141,8 @@
 	function setSubscore($formdata, $input_path){
 		switch($formdata){
 			case "false": 	return "";
-			case "upload": 	return "-ss=".$input_path."/subscore.tbl";
-			default: 		return "-ss=subscores/".$formdata.".tbl";
+			case "upload": 	return "-ss=\"".$input_path."/subscore.tbl\"";
+			default: 		return "-ss=\"subscores/".$formdata."\"";
 		}
 	}
 

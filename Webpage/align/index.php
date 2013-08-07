@@ -26,10 +26,13 @@
 			height: 90%;
 			border: none;
 		}
+		#header{
+			/*background-color: #EEEEEE;*/
+			padding-top: 1em;
+		}
 	</style>
 </head>
 <body>
-	<br>
 	<div id="header">
 		<center>
 			<div class="btn-group" data-toggle="buttons-radio">

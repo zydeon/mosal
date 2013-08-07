@@ -38,5 +38,10 @@ function add_to_logs($msg, $cmd="[no command]"){
 		fclose($f);
 	}
 }
+
+function log_($text){
+	echo "<script>console.log('$text')</script>";
+}
+
 ?>
 

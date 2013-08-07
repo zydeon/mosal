@@ -72,6 +72,12 @@
 		<form action="javascript:startAlignment()">
 			<fieldset id="step1" class="step">
 				<legend class="step">Step 1 - Sequences input (size &lt; 2000)</legend>
+				<div class="btn-group" data-toggle="buttons-radio">
+					<input type="button" id="protein" class="btn" value="Protein">
+					<input type="button" id="dna" class="btn" value="DNA">
+				</div>
+				<br>
+				<br>
 				<div id="alerts_seq1"></div>
 				<strong>Sequence 1</strong><br>
 				<textarea id="seq1" maxlength="2000" style="width:75%;" rows="4" required></textarea><br>
@@ -83,7 +89,7 @@
 
 			<fieldset id="step2" class="step">
 				<legend class="step">Step 2 - Score function</legend>
-				<div class="btn-group" data-toggle="buttons-radxio">
+				<div class="btn-group" data-toggle="buttons-radio">
 					<input type="button" id="ibtn" class="btn" value="Indels">
 					<input type="button" id="gbtn" class="btn" value="Gaps">
 				</div>
@@ -98,25 +104,11 @@
 					<br>
 					<div id="alerts_subscore"></div>
 					<strong>Choose a substitution score matrix</strong><br>
+
 					<!-- fetch substitution score matrixes -->
-					<?php
-						$dir = opendir("subscores");
-						while($entry = readdir($dir))
-							if(preg_match("/^BLOSUM.*\.tbl$/", $entry))
-								$blosums[] = substr($entry, 0, strrpos($entry, '.'));
-							else if(preg_match("/^PAM.*\.tbl$/", $entry))
-								$pams[] = substr($entry, 0, strrpos($entry, '.'));
-						closedir($dir);
-					?>
-					<select id="subscore_select">
-						<option value="-">-</option>
-						<optgroup label="BLOSUM">
-							<?php foreach ($blosums as $b) echo "<option value='$b'>$b</option>"; ?>
-						</optgroup>
-						<optgroup label="PAM">
-							<?php foreach ($pams as $p) echo "<option value='$p'>$p</option>"; ?>
-						</optgroup>
-					</select>
+					<?php displaySelect("Protein", "protein_select") ?>
+					<?php displaySelect("DNA", "dna_select", true) ?>
+
 					<p>or</p>
 					<label for="subscore_upl"><i class="icon-circle-arrow-up"></i><strong> Upload substitution score matrix</strong></label>
 					<input type="file" id="subscore_upl">
@@ -166,3 +158,53 @@
 	</center>
 </body>
 </html>
+
+<?php
+	function getSubscoreTables($path){
+		$groups['undefined'] = array();
+		$dir = opendir($path);
+		while($entry = readdir($dir)){
+			if(preg_match("/^[^\.]+\.?[^\.]+$/", $entry)){		// hide hidden files
+				if(is_dir($path."/".$entry)) 	$groups[$entry] = array();
+				else 							$groups['undefined'][] = $entry;
+			}
+		}
+		closedir($dir);
+
+		/* read groups (sub-folders) */
+		foreach ($groups as $g => $tables) {
+			if($g != 'undefined'){
+				$dir = opendir($path."/".$g);
+				while($entry = readdir($dir)){
+					if(preg_match("/^[^\.]+\.?[^\.]+$/", $entry)){			// hide hidden files
+						$groups[$g][] = $entry;
+					}
+				}
+				closedir($dir);
+			}
+		}
+		return $groups;
+	}
+
+	function displaySelect($type, $id, $hidden=false){
+		$groups = getSubscoreTables("subscores/$type");
+		$display = $hidden==true ? "style='display:none;'":"";
+		echo "<select id='$id' $display><option value='-'>-</option>";
+		
+		foreach ($groups['undefined'] as $t) {
+			echo "<option value='$type/$t'>$t</option>";
+		}
+		foreach ($groups as $g => $tables) {
+			if($g!='undefined'){
+				echo "<optgroup label='$g'>";
+				foreach ($tables as $t) echo "<option value='$type/$g/$t'>".stripExt($t)."</option>";
+				echo "</optgroup>";
+			}
+		}
+		echo "</select>";		
+	}
+
+	function stripExt($filename){
+		return substr($filename, 0, strrpos($filename, '.'));
+	}
+?>	

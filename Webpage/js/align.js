@@ -13,6 +13,7 @@ $(document).ready(function() {
 	$("#seq1").focus();
 	$("#ibtn").button('toggle');
 	$("#mbtn").button('toggle');
+	$("#protein").button('toggle');
 
 	$("#subscore_form").hide();
 	$("#pruning_form").hide();
@@ -30,12 +31,11 @@ function setEvents(){
 		ss_formdata = false;
 		wants_subscore = false;
 		$("#subscore_form").hide();
-		resetSubscoreSel($("#subscore_select"));
+		resetSubscoreSel($("#dna_select"));
+		resetSubscoreSel($("#protein_select"));
 		resetSubscoreUpl($("#subscore_upl"));
 	} );
 	$("#sbtn").click( function(){
-		if (window.FormData) ss_formdata = new FormData();
-		else console.log("Erro: browser does not support FormData")
 		wants_subscore = true;
 		$("#subscore_form").show();
 	} );
@@ -74,9 +74,20 @@ function setEvents(){
 	});
 	$("#subscore_upl").click(function(){
 		resetSubscoreSel($("#subscore_select"));
+		if (window.FormData) ss_formdata = new FormData();
+		else alert("Error: It's not possible to upload the substitution score file in this browser (does not support FormData)!");
 	});
 	$("#subscore_select").change(function(){
+		ss_formdata = false;
 		resetSubscoreUpl($("#subscore_upl"));
+	});
+	$("#dna").click(function(){
+		$("#dna_select").show();
+		$("#protein_select").hide();
+	});
+	$("#protein").click(function(){
+		$("#dna_select").hide();
+		$("#protein_select").show();
 	});	
 }
 function resetSubscoreUpl(element){
@@ -141,7 +152,8 @@ function startAlignment(){
 			}
 		}
 		else{
-			var sel_value = $("#subscore_select").val();
+			var is_dna = isBtnActive("dna");
+			var sel_value = $(is_dna ? "#dna_select" : "#protein_select").val();
 			if(sel_value != "-"){
 				subscore_value = sel_value;
 				executeAlign(timestamp);
