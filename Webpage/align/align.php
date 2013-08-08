@@ -61,8 +61,8 @@
 		// send email
 		if($email != ""){
 			$mail = new PHPMailer;
-			$mail->From = 'mosal@dei.uc.pt';
-			$mail->FromName = 'MOSAL webmaster';
+			// $mail->From = 'mosal@dei.uc.pt';
+			// $mail->FromName = 'MOSAL webmaster';
 			$mail->AddAddress($email);
 
 			$mail->AddAttachment($input_path.'/s1.fasta');
@@ -86,7 +86,7 @@
 
 			$mail->Subject = $subject;
 			$mail->Body = 'In the attachments section you will find the results of the alignment solutions along with the sequences you requested.'."\n";
-			$mail->Body .= 'Go to http://mosal.dei.uc.pt/align/visual so you can upload the results and visualize them.';
+			$mail->Body .= 'Go to http://mosal.dei.uc.pt/align/ so you can upload the results and visualize them.';
 
 			if(!$mail->Send()){
 				$response['debug'] = json_encode("Could not send email to $email!");

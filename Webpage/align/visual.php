@@ -77,7 +77,7 @@
 			<br>
 			<!-- End of Leave space to footer -->
 	
-			<div class="navbar navbar-fixed-bottom">
+			<div class="navbar">
 				<?php include '../includes/footer.php'; ?>
 			</div>
 	</center>
