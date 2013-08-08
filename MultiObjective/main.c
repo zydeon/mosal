@@ -48,6 +48,7 @@ int main(int argc, char const *argv[]){
 	char path_to_prog[300];
 	char * last_slash = strrchr(argv[0], '/');
 	memcpy( path_to_prog, argv[0], last_slash-argv[0] ) ;
+	path_to_prog[last_slash-argv[0]] = '\0';
 
 	// add relative path to current program
 	strcat(prog, path_to_prog);
