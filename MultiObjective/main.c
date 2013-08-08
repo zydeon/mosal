@@ -24,9 +24,6 @@ int main(int argc, char const *argv[]){
 	char prog[512]="";		// paths to external files can be big
 	char *args[6];
 
-
-	printf("%s\n", argv[1]);
-	
 	if( argc < 5 || !check_main_args(argc, argv) ){
 		printf("\nUsage: %s seq1_file seq2_file [gaps|indels] [dp|dpp -b=NUMBER] [-ss=FILE] [--no-traceback]\n", argv[0]);
 		printf("\nOptions:\n");
