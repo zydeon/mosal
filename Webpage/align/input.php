@@ -50,6 +50,11 @@
 			left:20px;
 			top:100px;
 		}
+		textarea{
+			width:75%;
+			margin-bottom:0px;
+			font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+		}
 	</style>
 
 </head>
@@ -71,7 +76,7 @@
 		<div id="alerts_container"></div>
 		<form action="javascript:startAlignment()">
 			<fieldset id="step1" class="step">
-				<legend class="step">Step 1 - Sequences input (size &lt; 2000)</legend>
+				<legend class="step">Step 1 - Sequences input (size &lt; 2000)<br><small><strong>FASTA format</strong></small></legend>
 				<div class="btn-group" data-toggle="buttons-radio">
 					<input type="button" id="protein" class="btn" value="Protein">
 					<input type="button" id="dna" class="btn" value="DNA">
@@ -80,11 +85,16 @@
 				<br>
 				<div id="alerts_seq1"></div>
 				<strong>Sequence 1</strong><br>
-				<textarea id="seq1" maxlength="2000" style="width:75%;" rows="4" required></textarea><br>
+				<textarea id="seq1" maxlength="2000" rows="4" required></textarea>
 				<br>
+				<button id="sample1" type="button" class="btn btn-link">sample</button>
+				<br>
+				<br> 
 				<div id="alerts_seq2"></div>
 				<strong>Sequence 2</strong><br>
-				<textarea id="seq2" maxlength="2000" style="width:75%;" rows="4" required></textarea><br>
+				<textarea id="seq2" maxlength="2000" rows="4" required></textarea>
+				<br>
+				<button id="sample2" type="button" class="btn btn-link">sample</button>				
 			</fieldset>
 
 			<fieldset id="step2" class="step">

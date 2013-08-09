@@ -89,6 +89,18 @@ function setEvents(){
 		$("#dna_select").hide();
 		$("#protein_select").show();
 	});	
+	$("#sample1").click(function(){
+		if(isBtnActive("dna"))
+			$("#seq1").val("> Sequence example 1\nATGAACAATCAAGCATACGGTGTTACACCTCCTATATCTGTTGCCAACTCTACTCCTAAG\nGAAAACGAACTTAATGATCTGTTAATAAAGGAATTGAAATCAAGAGGCTCGTTTGAGAGT\nGAAACTGCCACGAAGAAAAGAGTGGAGGTGTTAAATATTCTTCAAAGTATGACTGAAGAA\nTTTGTCTACAAAGTTTCTATAAAGAAAAACATATCGGAAGGAATGGCAAGGGATGTGGGT\nGGAAAAATATTTACATTTGGTTCCTATAGGTTAGGGGTATATGGACCAGGTTCAGATATT\nGACACTCTAGTTGTTGTTCC");
+		else
+			$("#seq1").val("> Sequence example 1\nMATGANATPLDFPSKKRKRSRWNQDTMEQKTVIPGMPTVIPPGLTREQERAYIVQLQIED\nLTRKLRTGDLGIPPNPEDRSPSPEPIYNSEGKRLNTREFRTRKKLEEERHNLITEMVALN\nPDFKPPADYKPPATRVSDKVMIPQDEYPEINFVGLLIGPRGNTLKNIEKECNAKIMIRGK\nGSVKEGKVGRKDGQMLPGEDEPLHALVTANTMENVKKAVEQIRNILKQGIETPEDQNDLR\nKMQLRELARLNGTLREDDNRILRPWQSSETRSI");
+	});
+	$("#sample2").click(function(){
+		if(isBtnActive("dna"))
+			$("#seq2").val("> Sequence example 2\nATGAACACGAAGACATACGGAGTAACTGAGCCTATATCAACAAATGGTCCAACACCGAAG\nGAGAATATTCTCAATGATGCACTCATACAAGAATTGAAAAATAGAGGTTCGTTTGAAAGC\nGAACAAGCAACTAAAAAAAGAGTTGAAGTGTTGACATTATTTCAACGATTAGTTCAAGAA\nTTTGTGTACACAGTATCAAAGAGCAAAAACATGTCCGATTCAATGGCCCAAGATGCCGGA\nGGAAAGGTATTTACTTTTGGATCCTATAGGTTGGGAGTCTATGGTCCAGGATCTGATATT\nGACACATTGGTTGTTGTGCC");
+		else
+			$("#seq2").val("> Sequence example 2\nMATKTLARPDEPGVHARDPRSLHPQDETSKIVGNSASIPSDNNEPPTNSNEFESAEHSSK\nKSLVQIATVMASLCACVFLAALEVTIVSTALPTIAAHFTSDSGYTWIGTSFVLAHTASTP\nSWGKISDIWGRKPILLIANVIFFAGSLLCALVDDLAIFIAGRAIQGLGAAVWAVASGVGP\nILGGAFTVRLSWRWCFWINLPITVAVFFLLVLTLRLPSPNTPVWAGLKAIDWPGSFLIVG\nGTLMLLLGLYLGGVYEPWNSATVVCLIVFGIITALLFVWNEWKLAEYPVIPVHLFKTWSS");
+	});	
 }
 function resetSubscoreUpl(element){
 	element.replaceWith( element = element.clone( true ) );
@@ -104,14 +116,19 @@ function startAlignment(){
 	$(".alert").alert('close');
 
 	// validate sequences
-	if(!validateSeq($("#seq1").val())){
-		displayError('alerts_seq1', 'Please check the sequence below for illegal characters: only values between A-Z and the * character are allowed');
+	try{
+		validateSeq($("#seq1").val())
+	} catch(err){
+		displayError('alerts_seq1', err);
 		return;
 	}
-	if(!validateSeq($("#seq2").val())){
-		displayError('alerts_seq2', 'Please check the sequence below for illegal characters: only values between A-Z and the * character are allowed');
+	try{
+		validateSeq($("#seq2").val())
+	} catch(err){
+		displayError('alerts_seq2', err);
 		return;
 	}
+
 	// upload substitution score file
 	if(wants_subscore){
 		var files = $("#subscore_upl").get(0).files;			// field is required (length is always > 0)
@@ -185,8 +202,8 @@ function executeAlign(timestamp){
 	$.post(
 		"align.php",
 		{	
-			seq1 		: $("#seq1").val(),
-			seq2 		: $("#seq2").val(),
+			seq1 		: clean_sequence($("#seq1").val()),
+			seq2 		: clean_sequence($("#seq2").val()),
 			timestamp 	: timestamp,
 			is_indels 	: is_indels,
 			bound_number: bound_number,
@@ -215,8 +232,15 @@ function executeAlign(timestamp){
 	);	
 }
 function validateSeq(value){
-	var regex = /^[A-Z\*]+$/;
-	return regex.test(value);
+	var regex;
+	if(value.indexOf(">") != -1){			// fasta format
+		regex = /^(\t| |\r?\n)*>.*(\r?\n[A-Z\*]+[\t ]*)+(\t| |\r?\n)*$/;
+		if(!regex.test(value)) throw "Please make sure the sequence below is either accordingly FASTA format or just a string of characters (only values between A-Z and the * character are allowed)"
+	}
+	else{
+		regex = /^(\t| |\r?\n)*[A-Z\*]+(\t| |\r?\n)*$/;
+		if(!regex.test(value)) throw 'Please check the sequence below for illegal characters: only values between A-Z and the * character are allowed'
+	}
 }
 function displayDLButtons(){
 	var html = 	'<a id="downloadValues" download="values.tsv" class="btn btn-success"><i class="icon-white icon-circle-arrow-down"></i> Download all solutions</a>' +
@@ -258,4 +282,9 @@ function emailForm(){
 function validSubscoreFile(raw_data){
 	var regex = /^(#.*\r?\n)*([\t ]*[A-Z\*])+[\t ]*(\r?\n[A-Z\*]([\t ]*-?(0|[1-9][0-9]*))+[\t ]*)+(\t| |\r?\n)*$/;
 	return regex.test(raw_data);
+}
+function clean_sequence(seq){	
+	seq = seq.replace(/^(\t| | \r?\n)*/,'');	// beginning of input
+	seq = seq.replace(/[\t ]*\r?\n/g,'\r\n');	// end of lines
+	return seq.replace(/(\t| | \r?\n)*$/,'');	// end of input
 }

@@ -61,8 +61,8 @@
 		// send email
 		if($email != ""){
 			$mail = new PHPMailer;
-			// $mail->From = 'mosal@dei.uc.pt';
-			// $mail->FromName = 'MOSAL webmaster';
+			$mail->From = 'pedromatias@mosal.dei.uc.pt';
+			$mail->FromName = 'MOSAL webmaster';
 			$mail->AddAddress($email);
 
 			$mail->AddAttachment($input_path.'/s1.fasta');
@@ -114,27 +114,30 @@
 
 
 	function format_seq($s){
-		// create fasta files content from string
-		$inc = 70;
-		$s2 = "> temporary file of sequence input\n";
-		for ($i=0; $i < strlen($s); $i+=$inc ) 
-			$s2.= substr($s, $i, min($inc, strlen($s)-$i))."\n";
+		if(!isFASTA($s)){
+			// create fasta files content from string
+			$inc = 70;
+			$s2 = "> temporary file of sequence input\r\n";
+			for ($i=0; $i < strlen($s); $i+=$inc ) 
+				$s2.= substr($s, $i, min($inc, strlen($s)-$i))."\r\n";
 
-		return $s2;
+			return $s2;
+		}
+		return $s;
 	}
 	function output_values($header, $values){
 		// return output of data values to be stored in a file
-		$contents = $header . "\n";
+		$contents = $header . "\r\n";
 		foreach ($values as $key => $value)
-			$contents .= $value[0] . "\t" . $value[1] . "\n";
+			$contents .= $value[0] . "\t" . $value[1] . "\r\n";
 		return $contents;
 	}
 	function output_aligns($header, $values, $alignments){
-		$contents = $header . "\n";
+		$contents = $header . "\r\n";
 		foreach ($values as $index => $value) 
-			$contents .= $value[0] . "\t" . $value[1] . "\n" .
-						 $alignments[$index][0] . "\n" .
-						 $alignments[$index][1] . "\n";
+			$contents .= $value[0] . "\t" . $value[1] . "\r\n" .
+						 $alignments[$index][0] . "\r\n" .
+						 $alignments[$index][1] . "\r\n";
 		
 		return $contents;
 	}
@@ -145,5 +148,7 @@
 			default: 		return "-ss=\"subscores/".$formdata."\"";
 		}
 	}
-
+	function isFASTA($seq){
+		return preg_match("/^>.*(\r?\n[A-Z\*]+)+$/", $seq);
+	}
 ?>

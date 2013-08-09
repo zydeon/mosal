@@ -24,9 +24,9 @@ function parse_file_contents(raw_data){
 	regexA = /^(matches|subscore)\t(indels|gaps)[\t ]*(\r?\n-?(0|[1-9][0-9]*)\t-?(0|[1-9][0-9]*)[\t ]*\r?\n[A-Z\-\*]+[\t ]*\r?\n[A-Z\-\*]+[\t ]*)+(\t| |\r?\n)*$/;
 
 	if( regexV.test(raw_data) )
-	return get_values(raw_data);
+		return get_values(raw_data);
 	if( regexA.test(raw_data) )
-	return get_aligns(raw_data);
+		return get_aligns(raw_data);
 
 	throw "parsing_file";
 }
