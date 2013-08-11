@@ -36,7 +36,6 @@
 				<h2 id="news">News</h2>
 				<ul>
 					<li>On-line version of MOSAL is available <a href="align">here</a></li> 
-					<li>Poster at <a href="http://bioinfo.mc.vanderbilt.edu/icibm2013/index.html" target="_blank">ICIBM 2013</a>: Local Search for Multi-criteria Multiple Sequence Alignment</li> 
 				</ul>
 				<br>
 
