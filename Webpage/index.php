@@ -35,7 +35,8 @@
 			<div class="span9">
 				<h2 id="news">News</h2>
 				<ul>
-					<li>On-line version of MOSAL is available <a href="align">here</a></li> 
+					<li>On-line version of MOSAL is available <a href="align">here</a></li>
+					<li><a href="www.gcb2013.de">Poster accepted to the German Conference in Bionformatics 2013</a></li>
 				</ul>
 				<br>
 
