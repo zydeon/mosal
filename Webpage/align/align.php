@@ -61,8 +61,8 @@
 		// send email
 		if($email != ""){
 			$mail = new PHPMailer;
-			$mail->From = 'pedromatias@mosal.dei.uc.pt';
-			$mail->FromName = 'MOSAL webmaster';
+			// $mail->From = 'pedromatias@mosal.dei.uc.pt';
+			// $mail->FromName = 'MOSAL webmaster';
 			$mail->AddAddress($email);
 
 			$mail->AddAttachment($input_path.'/s1.fasta');
