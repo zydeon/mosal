@@ -61,8 +61,12 @@
 		// send email
 		if($email != ""){
 			$mail = new PHPMailer;
-			// $mail->From = 'pedromatias@mosal.dei.uc.pt';
-			// $mail->FromName = 'MOSAL webmaster';
+
+			$mail->IsSMTP();
+			$mail->Host = 'smtp.dei.uc.pt';  
+
+			$mail->From = 'mosal@dei.uc.pt';
+			$mail->FromName = 'MOSAL webmaster';
 			$mail->AddAddress($email);
 
 			$mail->AddAttachment($input_path.'/s1.fasta');
@@ -89,9 +93,11 @@
 			$mail->Body .= 'Go to http://mosal.dei.uc.pt/align/ so you can upload the results and visualize them.';
 
 			if(!$mail->Send()){
-				$response['debug'] = json_encode("Could not send email to $email!");
+				$msg = "Could not send email to $email!\n";
+				$msg .= 'Mailer Error: ' . $mail->ErrorInfo;
+				$response['debug'] = json_encode($msg);
 				$remove_temporary_folder = false;
-				add_to_logs("Could not send email to $email!", $cmd);
+				add_to_logs($msg, $cmd);
 			}
 		}
 

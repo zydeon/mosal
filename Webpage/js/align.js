@@ -270,7 +270,7 @@ function getTimestamp(){
 function emailForm(){
 	return 	'<table>' +
 				'<tr>' +
-					'<td class="right_align">E-mail</td>' +
+					'<td class="right_align">E-mail address</td>' +
 					'<td><input type="email" id="email" required></td>' +
 				'</tr>' +
 				'<tr>' +
