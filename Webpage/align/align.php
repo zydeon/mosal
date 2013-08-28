@@ -96,7 +96,7 @@
 				$msg = "Could not send email to $email!\n";
 				$msg .= 'Mailer Error: ' . $mail->ErrorInfo;
 				$response['debug'] = json_encode($msg);
-				$remove_temporary_folder = false;
+				// $remove_temporary_folder = false;
 				add_to_logs($msg, $cmd);
 			}
 		}
