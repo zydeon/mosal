@@ -35,6 +35,7 @@
 			<div class="span9">
 				<h2 id="news">News</h2>
 				<ul>
+					<li>Due to an unexpected hardware failure, the web server was down several times in the last two weeks. The problem is now fixed.</li>
 					<li>On-line version of MOSAL is available <a href="align">here</a></li>
 					<li><a href="http://www.gcb2013.de" target="_blank">Poster accepted to the German Conference in Bionformatics 2013</a></li>
 				</ul>
