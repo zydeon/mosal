@@ -1,0 +1,7 @@
+AuthName "Authorized Users Only."
+
+AuthType Basic
+
+AuthUserFile /Users/Pedro/Sites/Webpage/align/backend/.htpasswd
+
+require user mosal
