@@ -7,3 +7,4 @@
 *.htaccess
 *logs.html
 *get_code.sh
+*inputs/*
