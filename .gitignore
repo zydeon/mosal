@@ -3,8 +3,6 @@
 *.svn*
 *prog
 *mosal
-*.htpasswd
-*.htaccess
 *logs.html
 *get_code.sh
 *inputs/*
