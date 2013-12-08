@@ -69,6 +69,7 @@
 				<li><a href="#step2">Step 2 - Score function</a></li>
 				<li><a href="#step3">Step 3 - Alignment options</a></li>
 				<li><a href="#step4">Step 4 - Submit</a></li>
+				<!-- <li><a href="#step4">Help</a></li> -->
 			</ul>
 
 		<center>
