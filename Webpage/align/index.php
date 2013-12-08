@@ -13,6 +13,9 @@
 			$("#visual").click(function(){
 				$('#frame').attr('src', 'visual.php');
 			});
+			$("#help").click(function(){
+				$('#frame').attr('src', 'help.php');
+			});
 			$("#alignm").button('toggle');
 		});
 	</script>
@@ -38,6 +41,7 @@
 			<div class="btn-group" data-toggle="buttons-radio">
 				<input type="button" id="alignm" class="btn" value="Align sequences">
 				<input type="button" id="visual" class="btn" value="Visualize results">
+				<input type="button" id="help"   class="btn" value="Help">
 			</div>
 		<hr>
 		</center>

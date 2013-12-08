@@ -41,7 +41,7 @@
             /*width:200px;*/
             background-color:white;
             left:15%;
-            top:100px;
+            top:8%;
         }
     </style>
 
@@ -57,7 +57,7 @@
 
         <br>
         <h2>Help</h2> <br>
-        <p>This webpage describes the process of using <a href="http://mosal.dei.uc.pt/align">MOSAL</a> to get multiobjective sequence alignments. In order to use the tool, one must follow a multiple step process that is explained below.</p>
+        <p>This webpage describes the process of using <a href="http://mosal.dei.uc.pt/align" target="_parent">MOSAL</a> to get multiobjective sequence alignments. In order to use the tool, one must follow a multiple step process that is explained below.</p>
         <br>
         <h3 id="step1">Step 1 - Sequences input</h3> <br>
         <p>This is the step where the user provide the target sequences. The format of the sequences can either be the <a href="http://en.wikipedia.org/wiki/FASTA_format" target="_blank">FASTA</a> format or just a string of characters. In both formats only upper-case letters are allowed, as well as the "*" symbol. </p>
@@ -75,12 +75,12 @@
         <br>
         <h3>Step 3 - Alignment options</h3> <br>
         <p>The "traceback" option in this step, when selected, allow to compute both the sequences alignments and the scores values, otherwise, only the latter are shown.</p>
-        <p>the "Use pruning" uses the the pruning technique discussed in the article (<a href="http://bioinformatics.oxfordjournals.org/content/29/8/996">link</a>). The value corresponds to the lower bound set size. This option may reduce considerably the computation time if adjusted properly. Experimental results suggest that 10 is an appropriate value.</p>
+        <p>the "Use pruning" uses the the pruning technique discussed in the article (<a href="http://bioinformatics.oxfordjournals.org/content/29/8/996" target="_blank">link</a>). The value corresponds to the lower bound set size. This option may reduce considerably the computation time if adjusted properly. Experimental results suggest that 10 is an appropriate value.</p>
 
         <br>
         <h3>Step 4 - Submit</h3> <br>
         <p>This is the final step. The score values are displayed in a plot with indels/gaps as the y-axis and matches/score as the x-axis. It is possible to zoom in the plot by clicking it and drag. Double click to reset. If the option <b>traceback</b> was selected it is also possible to click on a data point in the plot and see the respective alignment below the plot. </p>
-        <p>Links to download files with the score values and corresponding alignments are presented, so that the user can visualize the results again by uploading them in <a href="http://mosal.dei.uc.pt/align/">mosal.dei.uc.pt/align/</a> after selecting the option <b>Visualize results</b> in the top of page.</p>
+        <p>Links to download files with the score values and corresponding alignments are presented, so that the user can visualize the results again by uploading them in <a href="http://mosal.dei.uc.pt/align/" target="_blank">mosal.dei.uc.pt/align/</a> after selecting the option <b>Visualize results</b> in the top of page.</p>
         <p>For large sequences, the time of computation can be very large, so the the user has the option of receiving the result files mentioned by e-mail, so that it can later visuzalize them.</p>
 
         <br>
