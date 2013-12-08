@@ -60,12 +60,12 @@
         <p>This webpage describes the process of using <a href="http://mosal.dei.uc.pt/align">MOSAL</a> to get multiobjective sequence alignments. In order to use the tool, one must follow a multiple step process that is explained below.</p>
         <br>
         <h3 id="step1">Step 1 - Sequences input</h3> <br>
-        <p>This is the step where the user provide the target sequences. The format of the sequences can either be the <a href="http://en.wikipedia.org/wiki/FASTA_format" target="_blank">FASTA</a> format or just a string of characters. In both formats only uppercase letters are allowed together with the * symbol. </p>
-        <p>The choice between <b>Protein</b> and <b>DNA</b> influences the choice of the substitution score matrix (step 2). There are also buttons below each sequence input field that introduce an example of a FASTA formatted sequence.</p>
+        <p>This is the step where the user provide the target sequences. The format of the sequences can either be the <a href="http://en.wikipedia.org/wiki/FASTA_format" target="_blank">FASTA</a> format or just a string of characters. In both formats only upper-case letters are allowed, as well as the "*" symbol. </p>
+        <p>The selection between <b>Protein</b> and <b>DNA</b> influences the choice of the substitution score matrix (step 2). The buttons below each sequence input field allow to introduce an example of a FASTA formatted sequence.</p>
 
         <br>
         <h3 id="step2">Step 2 - Score function</h3> <br>
-        <p>In this step the user must choose 2 objectives:</p>
+        <p>In this step the user must choose which objectives to consider:</p>
         <ul>
             <li>Minimize either <b>Indels</b> or <b>Gaps</b></li>
             <li>Maximize either the number of <b>Matches</b> or the <b>Substitution score</b> </li>
@@ -74,13 +74,13 @@
 
         <br>
         <h3>Step 3 - Alignment options</h3> <br>
-        <p>The first option in this section, when selected, tells the tool to also compute the sequences alignments besides computing the values of the objectives (default behaviour). Naturally, the time it will take to finish the execution is larger, but one can compare the alignments by clicking on the solutions in the chart that is displayed as output.</p>
-        <p>The second option may reduce the computation time if adjusted properly: too few bounds may not increase the speed, but too many bounds may introduce more overhead during pruning.</p>
+        <p>The "traceback" option in this step, when selected, allow to compute both the sequences alignments and the scores values, otherwise, only the latter are shown.</p>
+        <p>the "Use pruning" uses the the pruning technique discussed in the article (<a href="http://bioinformatics.oxfordjournals.org/content/29/8/996">link</a>). The value corresponds to the lower bound set size. This option may reduce considerably the computation time if adjusted properly. Experimental results suggest that 10 is an appropriate value.</p>
 
         <br>
         <h3>Step 4 - Submit</h3> <br>
-        <p>This is the final step. The computation values of the objectives are displayed in a plot with indels/gaps as the y-axis and matches/score as the x-axis. It is possible to zoom in the plot by clicking it and drag. Double click to reset. If the option <b>traceback</b> was selected it is also possible to click on a data point in the plot and see the respective alignment below the plot. </p>
-        <p>Links to download files with the computed values and alignments are presented, so that the user can visualize the results again by uploading them in <a href="http://mosal.dei.uc.pt/align/">mosal.dei.uc.pt/align/</a> after selecting the option <b>Visualize results</b> in the top of page.</p>
+        <p>This is the final step. The score values are displayed in a plot with indels/gaps as the y-axis and matches/score as the x-axis. It is possible to zoom in the plot by clicking it and drag. Double click to reset. If the option <b>traceback</b> was selected it is also possible to click on a data point in the plot and see the respective alignment below the plot. </p>
+        <p>Links to download files with the score values and corresponding alignments are presented, so that the user can visualize the results again by uploading them in <a href="http://mosal.dei.uc.pt/align/">mosal.dei.uc.pt/align/</a> after selecting the option <b>Visualize results</b> in the top of page.</p>
         <p>For large sequences, the time of computation can be very large, so the the user has the option of receiving the result files mentioned by e-mail, so that it can later visuzalize them.</p>
 
         <br>
