@@ -18,7 +18,7 @@ function Visualizer(data, targetDivID, is_subscore, is_indels){
         if(this.is_traceback){
             $('#chartdiv').bind('jqplotDataClick',
                     function (ev, seriesIndex, pointIndex, data) {                
-                        $("#aligndiv").html( createAlignDiv(pointIndex) );
+                        $("#aligndiv").html(createAlignDiv(pointIndex) );
                         scrollTo(targetDivID);
                     }
                 )
@@ -39,51 +39,73 @@ function Visualizer(data, targetDivID, is_subscore, is_indels){
         for (var i = 0; i < a1.length; i++)
             b += a1[i]==a2[i] ? "|" : "&nbsp;";
 
+        cs = colors(a1, a2);
         return $("<div class='align'></div>")
                 .html(  "<br><pre class='align'>" +
-                            color (a1) + "<br>" + 
+                            cs[0] + "<br>" + 
                             b + "<br>" +
-                            color (a2) + "<br>" +
+                            cs[1] + "<br>" +
                         "</pre>" +
                         "("+x + ", " + y + ")<br>"
                     );
     }
-    function color(sequence){
+    function colors(seq1, seq2){
         color_ = getColorsMap();
-        return sequence.split("").map(function(c){
-            return "<span style='color:"+color_[c]+"'>" + c + "</span>";
-        }).join("");
+        s1 = seq1.split("");
+        s2 = seq2.split("");
+        for (var i = 0; i < s1.length; i++) {
+            c1 = color_[s1[i]];
+            c2 = color_[s2[i]];
+            if(c1 == c2){
+                s1[i] = "<span style='background-color:"+c1+"'>" + s1[i] + "</span>"
+                s2[i] = "<span style='background-color:"+c1+"'>" + s2[i] + "</span>"
+            }
+        };
+        return [s1.join(""), s2.join("")];
     }
     function getColorsMap(){
-        M   = {} // maps letters to colors
-        AB  = "-ABCDEFGHIJKLMNOPQRSTUVWXYZ*".split("");
-        inc = Math.floor(256/(Math.pow(28, 1/3)));   // get equally (maximum) spread colors
-        r = 0;
-        g = 0;
-        b = 0;
-        i = 0;
-        for (var r = 0; r < 256 && i < AB.length; r+=inc) {
-            for (var g = 0; g < 256 && i < AB.length; g+=inc) {
-                for (var b = 0; b < 256 && i < AB.length; b+=inc) {
-                    console.log(AB[i]+": "+toHexRepr(r,g,b))
-                    M[ AB[i] ] = toHexRepr(r,g,b);
-                    i++;   // guarantee that does not exceed number of colors
-                }
-            }
-        }
+        // according to http://www.bioinformatics.org/sms2/color_align_prop.html
+        M = {};
+        M['G'] = M['A'] = M['V'] = M['L'] = M['I'] = '#C0C0C0';
+        M['F'] = M['Y'] = M['W']                   = '#FF6600';
+        M['C'] = M['M']                            = '#FFFF00';
+        M['S'] = M['T']                            = '#66FF00';
+        M['K'] = M['R'] = M['H']                   = '#FF0000';
+        M['D'] = M['E']                            = '#0066FF';
+        M['N'] = M['Q']                            = '#996633';
+        M['P']                                     = '#FF99FF';
+
         return M;
     }
-    function toHexRepr(r,g,b){
-        r_ = (r > 15 ? "" : "0") + r.toString(16);
-        g_ = (g > 15 ? "" : "0") + g.toString(16);
-        b_ = (b > 15 ? "" : "0") + b.toString(16);
-        return "#" + r_ + g_ + b_;
+    this.displayAllAligns = function(){
+        if(this.is_traceback){
+            // compare all alignments in new popup window
+            win = window.open("","","top=0, left="+screen.width/4 +", toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=yes, copyhistory=no, width="+screen.width/2+", height="+screen.height)
+            win.focus();
+
+            // write header
+            win.document.write(' <html>' +
+                                '<head>' +
+                                    '<link href="../css/bootstrap.css" rel="stylesheet" type="text/css">'+
+                                    '<link href="../css/mystyles.css" rel="stylesheet" type="text/css">' +
+                                '</head>' +
+                                '<body>' +
+                                    '<center>');
+
+            for (var i = 0; i < this.data.values.length; i++) {
+                win.document.writeln( createAlignDiv(i).html() + '<br>' );
+            };
+
+            win.document.write('</center></body></html>');
+
+        }
     }
     this.resultsHTML = function(){
         var contents =  '<h2>Results</h2>' + 
                         '<br>' +
                         '<div id="chartdiv"style="height:400px;width:600px;"></div>' +
                         '<br>' +
+                        (this.is_traceback ? '<button id="compare_all_aligns" type="button" class="btn btn-link">Compare all alignments</button><br>' : '') +
                         '<div id="aligndiv"></div>' +
                         '<br>';
 

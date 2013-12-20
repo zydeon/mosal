@@ -220,6 +220,9 @@ function executeAlign(timestamp){
 			if(response.status=='success'){
 				V = new Visualizer(response.data, 'results', is_subscore, is_indels)
 				V.displayResults();
+				$('#compare_all_aligns').click(function(){
+						V.displayAllAligns();	
+				});
 				displayDLButtons();
 				if(response.debug)
 					console.log("Debug info:\n> "+response.debug);
