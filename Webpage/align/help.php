@@ -79,7 +79,7 @@
 
         <br>
         <h3>Step 4 - Submit</h3> <br>
-        <p>This is the final step. The score values are displayed in a plot with indels/gaps as the y-axis and matches/score as the x-axis. It is possible to zoom in the plot by clicking it and drag. Double click to reset. If the option <b>traceback</b> was selected it is also possible to click on a data point in the plot and see the respective alignment below the plot. </p>
+        <p>This is the final step. The score values are displayed in a plot with indels/gaps as the y-axis and matches/score as the x-axis. It is possible to zoom in the plot by clicking it and drag. Double click to reset. If the option <b>traceback</b> was selected it is also possible to click on a data point in the plot and see the respective alignment below the plot. One can also compare all the alignments (button below plot). Identical (or similar) residues are given a color as it is described in <a href="http://www.bioinformatics.org/sms2/color_align_prop.html" target="_blank">http://www.bioinformatics.org/sms2/color_align_prop.html</a>. The coloring used here is the default one of the previous website. </p>
         <p>Links to download files with the score values and corresponding alignments are presented, so that the user can visualize the results again by uploading them in <a href="http://mosal.dei.uc.pt/align/" target="_blank">mosal.dei.uc.pt/align/</a> after selecting the option <b>Visualize results</b> in the top of page.</p>
         <p>For large sequences, the time of computation can be very large, so the the user has the option of receiving the result files mentioned by e-mail, so that it can later visuzalize them.</p>
 

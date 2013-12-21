@@ -90,13 +90,15 @@ function Visualizer(data, targetDivID, is_subscore, is_indels){
                                     '<link href="../css/mystyles.css" rel="stylesheet" type="text/css">' +
                                 '</head>' +
                                 '<body>' +
-                                    '<center>');
+                                    '<center><pre class="align" style="line-height:100%">');
 
-            for (var i = 0; i < this.data.values.length; i++) {
-                win.document.writeln( createAlignDiv(i).html() + '<br>' );
+            var aligns="";
+            for (var i = 0; i < this.data.alignments.length; i++) {
+                cs      = colors(this.data.alignments[i][0], this.data.alignments[i][1]);
+                aligns += '('+this.data.values[i][0]+','+this.data.values[i][1]+')<br>'+cs[0] + '<br>' + cs[1]+'<br><br>';
             };
 
-            win.document.write('</center></body></html>');
+            win.document.write(aligns+'</pre></center></body></html>');
 
         }
     }
@@ -105,8 +107,9 @@ function Visualizer(data, targetDivID, is_subscore, is_indels){
                         '<br>' +
                         '<div id="chartdiv"style="height:400px;width:600px;"></div>' +
                         '<br>' +
-                        (this.is_traceback ? '<button id="compare_all_aligns" type="button" class="btn btn-link">Compare all alignments</button><br>' : '') +
                         '<div id="aligndiv"></div>' +
+                        '<br>' +
+                        (this.is_traceback ? '<a id="compare_all_aligns" class="btn btn-success">Compare all alignments</a><br>' : '') +
                         '<br>';
 
         return contents;
