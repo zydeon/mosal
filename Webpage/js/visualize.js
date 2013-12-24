@@ -39,12 +39,11 @@ function Visualizer(data, targetDivID, is_subscore, is_indels){
         for (var i = 0; i < a1.length; i++)
             b += a1[i]==a2[i] ? "|" : "&nbsp;";
 
-        cs = colors(a1, a2);
         return $("<div class='align'></div>")
                 .html(  "<br><pre class='align'>" +
-                            cs[0] + "<br>" + 
+                            a1 + "<br>" + 
                             b + "<br>" +
-                            cs[1] + "<br>" +
+                            a2 + "<br>" +
                         "</pre>" +
                         "("+x + ", " + y + ")<br>"
                     );
