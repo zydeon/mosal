@@ -9,6 +9,9 @@ function executeUpload(){
 			var header = evt.target.result.substring(0, evt.target.result.indexOf("\n"));
 			var V = new Visualizer(D, 'results', header.indexOf("subscore")>=0, header.indexOf("indels")>=0);
 			V.displayResults();
+			$('#compare_all_aligns').click(function(){
+					V.displayAllAligns();	
+			});
 		} catch(err){
 			if(err === "parsing_file")
 			handleError('Uploaded file <i>'+file.name+'</i> was not parsed correctly, please verify its contents (eg, extra spaces or newlines)!');

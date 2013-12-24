@@ -73,15 +73,15 @@
         <p>The user can choose one of the default substitution score matrixes (dependent on choice between Protein or DNA) or upload one of its own as long as it follows the standards (see <a href="http://en.wikipedia.org/wiki/Substitution_matrix" target="_blank">link</a>).</p>
 
         <br>
-        <h3>Step 3 - Alignment options</h3> <br>
+        <h3 id="step3">Step 3 - Alignment options</h3> <br>
         <p>The "traceback" option in this step, when selected, allow to compute both the sequences alignments and the scores values, otherwise, only the latter are shown.</p>
         <p>the "Use pruning" uses the the pruning technique discussed in the article (<a href="http://bioinformatics.oxfordjournals.org/content/29/8/996" target="_blank">link</a>). The value corresponds to the lower bound set size. This option may reduce considerably the computation time if adjusted properly. Experimental results suggest that 10 is an appropriate value.</p>
 
         <br>
-        <h3>Step 4 - Submit</h3> <br>
-        <p>This is the final step. The score values are displayed in a plot with indels/gaps as the y-axis and matches/score as the x-axis. It is possible to zoom in the plot by clicking it and drag. Double click to reset. If the option <b>traceback</b> was selected it is also possible to click on a data point in the plot and see the respective alignment below the plot. One can also compare all the alignments (button below plot). Identical (or similar) residues are given a color as it is described in <a href="http://www.bioinformatics.org/sms2/color_align_prop.html" target="_blank">http://www.bioinformatics.org/sms2/color_align_prop.html</a>. The coloring used here is the default one of the previous website. </p>
+        <h3 id="step4">Step 4 - Submit</h3> <br>
+        <p>This is the final step. The score values are displayed in a plot with indels/gaps as the y-axis and matches/score as the x-axis. It is possible to zoom in the plot by clicking it and drag. Double click to reset. If the option <b>traceback</b> was selected it is also possible to click on a data point in the plot and see the respective alignment below the plot. One can also compare all the alignments (button below plot). Identical (or similar) residues are given a color as it is described in <a href="http://www.bioinformatics.org/sms2/color_align_prop.html" target="_blank">http://www.bioinformatics.org/sms2/color_align_prop.html</a>. The coloring used is the default option of the website above. </p>
         <p>Links to download files with the score values and corresponding alignments are presented, so that the user can visualize the results again by uploading them in <a href="http://mosal.dei.uc.pt/align/" target="_blank">mosal.dei.uc.pt/align/</a> after selecting the option <b>Visualize results</b> in the top of page.</p>
-        <p>For large sequences, the time of computation can be very large, so the the user has the option of receiving the result files mentioned by e-mail, so that it can later visuzalize them.</p>
+        <p>For large sequences, the computation time can be very large. The user has the option of receiving the resulting files by e-mail, so that it can later visualize them.</p>
 
         <br>
         <div class="navbar">
