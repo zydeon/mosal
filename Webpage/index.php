@@ -35,7 +35,6 @@
 			<div class="span9">
 				<h2 id="news">News</h2>
 				<ul>
-					<li>Heuristics for the Multi-objective Multiple Sequence Alignment Problem, to be presented at the <a href="http://minieuro2014.web.ua.pt/">EURO Mini-conference on Optimization in the Natural Sciences</a>.</li>
 					<li>BiMuSA, an implementation for biobjective multiple sequence alignment problems, is available <a href="http://www.zib.de/schenker/downloads/bimusa.tar.gz">here</a> (see <a href="http://eden.dei.uc.pt/~paquete/papers/MOSAL/R3.pdf
 ">technical report</a>)</li>
 					<li>Due to an unexpected hardware failure, the web server was down several times in the last two weeks. The problem is now fixed.</li>
