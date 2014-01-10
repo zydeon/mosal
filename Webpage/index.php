@@ -35,7 +35,7 @@
 			<div class="span9">
 				<h2 id="news">News</h2>
 				<ul>
-					<li>Article "MOSAL: Software tools for multiobjective sequence alignment", accepted to <a href="http://www.scfbm.org" target="_blank">Source Code for Biology and Medicine</a>.</li>
+					<li>Article "<a href="http://dx.doi.org/10.1186/1751-0473-9-2" target="_blank">MOSAL: Software tools for multiobjective sequence alignment</a>", accepted to <a href="http://www.scfbm.org" target="_blank">Source Code for Biology and Medicine</a>.</li>
 					<li>BiMuSA, an implementation for biobjective multiple sequence alignment problems, is available <a href="http://www.zib.de/schenker/downloads/bimusa.tar.gz">here</a> (see <a href="http://eden.dei.uc.pt/~paquete/papers/MOSAL/R3.pdf
 ">technical report</a>)</li>
 					<li>Due to an unexpected hardware failure, the web server was down several times in the last two weeks. The problem is now fixed.</li>
@@ -149,8 +149,15 @@
 						<tr>
 							<td class="span1" id="ref1">[1]</td>
 							<td>M.Abbasi, L. Paquete, A.Liefooghe, M. Pinheiro and P.Matias, 
-								<a href="http://dx.doi.org/10.1093/bioinformatics/btt098">Improvements on bicriteria pairwise sequence alignment: algorithms and applications</a>,
-								Bioinformatics, 29(8):996-1003, 2013.</td>
+								<a href="http://dx.doi.org/10.1093/bioinformatics/btt098" target="_blank">Improvements on bicriteria pairwise sequence alignment: algorithms and applications</a>,
+								Bioinformatics, 29(8):996-1003, 2013.
+							</td>
+
+							<td class="span1" id="ref2">[2]</td>
+							<td>L. Paquete, P. Matias, M. Abbasi, M. Pinheiro
+								<a href="http://dx.doi.org/10.1186/1751-0473-9-2" target="_blank">MOSAL: Software tools for multiobjective sequence alignment</a>,
+								Source Code for Biology and Medicine, 9(2), 2014.
+							</td>
 						</tr>
 					</tbody>
 				</table>
