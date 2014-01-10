@@ -152,7 +152,8 @@
 								<a href="http://dx.doi.org/10.1093/bioinformatics/btt098" target="_blank">Improvements on bicriteria pairwise sequence alignment: algorithms and applications</a>,
 								Bioinformatics, 29(8):996-1003, 2013.
 							</td>
-
+						</tr>
+						<tr>
 							<td class="span1" id="ref2">[2]</td>
 							<td>L. Paquete, P. Matias, M. Abbasi, M. Pinheiro
 								<a href="http://dx.doi.org/10.1186/1751-0473-9-2" target="_blank">MOSAL: Software tools for multiobjective sequence alignment</a>,
