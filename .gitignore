@@ -6,6 +6,3 @@
 *logs.html
 *get_code.sh
 *inputs/*
-*.htpasswd
-*.htaccess
-*set_permissions.sh
